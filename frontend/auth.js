@@ -27,7 +27,7 @@ form.onsubmit = async (e) => {
     }
     const endpoint = isLogin ? '/api/auth/login' : '/api/auth/signup';
     try {
-        const res = await fetch('https://4070-103-163-182-184.ngrok-free.app' + endpoint, {
+        const res = await fetch('https://89a5-103-163-182-184.ngrok-free.app/' + endpoint, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, password })
