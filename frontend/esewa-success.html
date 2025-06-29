@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>eSewa Payment Success</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #e8f5e9; text-align: center; padding-top: 80px; }
+        .msg { color: #388e3c; font-size: 2em; margin-bottom: 20px; }
+        a { color: #1976d2; text-decoration: none; font-size: 1.1em; }
+    </style>
+</head>
+<body>
+    <div class="msg">Verifying payment...</div>
+    <a href="index.html">Return to Home</a>
+    <script>
+    // Parse query params from eSewa
+    function getQueryParams() {
+        const params = {};
+        window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(str,key,value) {
+            params[key] = value;
+        });
+        return params;
+    }
+    const esewaParams = getQueryParams();
+    const orderInfo = JSON.parse(localStorage.getItem('pendingEsewaOrder') || '{}');
+    if (orderInfo && orderInfo.pid && esewaParams.oid && esewaParams.refId) {
+        fetch('http://localhost:8080/api/orders/esewa-verify', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                ...orderInfo,
+                oid: esewaParams.oid,
+                refId: esewaParams.refId
+            })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.status === 'success') {
+                localStorage.removeItem('cart');
+                localStorage.removeItem('pendingEsewaOrder');
+                document.querySelector('.msg').textContent = 'Payment Verified! Order placed.';
+            } else {
+                document.querySelector('.msg').textContent = 'Payment could not be verified.';
+            }
+        })
+        .catch(() => {
+            document.querySelector('.msg').textContent = 'Server error during verification.';
+        });
+    } else {
+        document.querySelector('.msg').textContent = 'Missing payment/order info.';
+    }
+    </script>
+</body>
+</html> 

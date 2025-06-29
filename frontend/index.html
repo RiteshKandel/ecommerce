@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Store</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-left">
+            <span class="logo">E-Shop</span>
+        </div>
+        <div class="nav-center">
+            <input type="text" id="search-bar" class="search-bar" placeholder="Search products...">
+        </div>
+        <div class="nav-right">
+            <a href="index.html" class="nav-link">Home</a>
+            <button id="orders-btn" class="nav-btn">Orders</button>
+            <button id="cart-btn" class="nav-btn">
+                Cart <span id="cart-count" class="cart-count">0</span>
+            </button>
+            <button id="logout-btn" class="nav-btn" style="display:none;">Logout</button>
+            <button id="profile-btn" class="nav-btn">Profile</button>
+        </div>
+    </nav>
+    <main>
+        <h1>Product List</h1>
+        <div id="spinner" class="spinner"></div>
+        <div id="product-list" class="product-list"></div>
+    </main>
+    <footer class="footer">
+        &copy; 2025 E-Shop. All rights reserved. | Contact: support@eshop.com
+    </footer>
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="close-modal">&times;</span>
+            <img id="modal-img" src="" alt="Product Image">
+            <h2 id="modal-title"></h2>
+            <p id="modal-desc"></p>
+            <div class="price" id="modal-price"></div>
+        </div>
+    </div>
+    <div id="cart-modal" class="modal">
+        <div class="modal-content cart-modal-content">
+            <span class="close" id="close-cart-modal">&times;</span>
+            <h2>Your Cart</h2>
+            <div id="cart-items"></div>
+            <div id="cart-total" class="cart-total"></div>
+            <button id="checkout-btn" class="checkout-btn">Checkout</button>
+        </div>
+    </div>
+    <div id="checkout-modal" class="modal">
+        <div class="modal-content checkout-modal-content">
+            <span class="close" id="close-checkout-modal">&times;</span>
+            <h2>Checkout</h2>
+            <form id="checkout-form">
+                <label for="checkout-name">Name</label>
+                <input type="text" id="checkout-name" required />
+                <label for="checkout-email">Email</label>
+                <input type="email" id="checkout-email" required />
+                <label for="checkout-phone">Phone Number</label>
+                <input type="tel" id="checkout-phone" required pattern="[0-9]{10,}" />
+                <label for="checkout-address">Shipping Address</label>
+                <textarea id="checkout-address" required rows="3"></textarea>
+                <label for="checkout-payment">Payment Method</label>
+                <select id="checkout-payment" required>
+                    <option value="cod">Cash on Delivery</option>
+                    <option value="esewa">eSewa</option>
+                </select>
+                <button type="submit" class="checkout-submit-btn">Place Order</button>
+                <div id="checkout-msg" class="checkout-msg"></div>
+            </form>
+        </div>
+    </div>
+    <div id="profile-modal" class="modal">
+        <div class="modal-content profile-modal-content">
+            <span class="close" id="close-profile-modal">&times;</span>
+            <h2>Your Profile</h2>
+            <form id="profile-form">
+                <label for="profile-email">Email</label>
+                <input type="email" id="profile-email" required />
+                <label for="profile-password">New Password</label>
+                <input type="password" id="profile-password" placeholder="Leave blank to keep current" />
+                <button type="submit" class="profile-save-btn">Save Changes</button>
+                <div id="profile-msg" class="profile-msg"></div>
+            </form>
+        </div>
+    </div>
+    <div id="orders-modal" class="modal">
+        <div class="modal-content orders-modal-content">
+            <span class="close" id="close-orders-modal">&times;</span>
+            <h2>Your Orders</h2>
+            <div id="orders-list"></div>
+        </div>
+    </div>
+    <!-- Khalti integration now uses your live public key -->
+    <script src="https://khalti.com/static/khalti-checkout.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 
