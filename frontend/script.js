@@ -285,8 +285,8 @@ document.addEventListener('DOMContentLoaded', () => {
             tAmt: amount,
             pid: pid,
             scd: 'EPAYTEST',
-            su: window.location.origin + '/esewa-success.html',
-            fu: window.location.origin + '/esewa-fail.html'
+            su: window.location.origin + '/ecommerce/frontend/esewa-success.html',
+            fu: window.location.origin + '/ecommerce/frontend//esewa-fail.html'
         };
         for (const key in params) {
             const input = document.createElement('input');
