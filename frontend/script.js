@@ -180,7 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     showSpinner();
-    fetch('http://localhost:8080/api/products')
+    fetch('https://4070-103-163-182-184.ngrok-free.app/api/products')
         .then(response => response.json())
         .then(products => {
             hideSpinner();
@@ -208,7 +208,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function openProfileModal() {
         profileMsg.textContent = '';
         profilePassword.value = '';
-        fetch(`http://localhost:8080/api/auth/profile?email=${encodeURIComponent(getCurrentEmail())}`)
+        fetch(`https://4070-103-163-182-184.ngrok-free.app/api/auth/profile?email=${encodeURIComponent(getCurrentEmail())}`)
             .then(res => res.json())
             .then(user => {
                 profileEmail.value = user.email;
@@ -240,7 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
             try {
-                const res = await fetch('http://localhost:8080/api/auth/profile', {
+                const res = await fetch('https://4070-103-163-182-184.ngrok-free.app/api/auth/profile', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email: oldEmail, newEmail, newPassword })
@@ -363,7 +363,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 checkoutModal.style.display = 'none';
                 cartModal.style.display = 'none';
             }, 1500);
-            fetch('http://localhost:63342/ecommerce/frontend/index.html', {
+            fetch('https://riteshkandel.github.io/ecommerce/frontend/index.html', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -420,7 +420,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ordersBtn.onclick = () => {
             ordersList.innerHTML = '<div style="text-align:center;color:#888;">Loading...</div>';
             ordersModal.style.display = 'flex';
-            fetch(`http://localhost:8080/api/orders?email=${encodeURIComponent(localStorage.getItem('token'))}`)
+            fetch(`https://4070-103-163-182-184.ngrok-free.app/api/orders?email=${encodeURIComponent(localStorage.getItem('token'))}`)
                 .then(res => res.json())
                 .then(renderOrders)
                 .catch(() => {
