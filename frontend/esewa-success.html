@@ -24,7 +24,7 @@
     const esewaParams = getQueryParams();
     const orderInfo = JSON.parse(localStorage.getItem('pendingEsewaOrder') || '{}');
     if (orderInfo && orderInfo.pid && esewaParams.oid && esewaParams.refId) {
-        fetch('http://https://4070-103-163-182-184.ngrok-free.app/api/orders/esewa-verify', {
+        fetch('https://89a5-103-163-182-184.ngrok-free.app/api/orders/esewa-verify', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
