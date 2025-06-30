@@ -25,7 +25,7 @@ form.onsubmit = async (e) => {
         errorMsg.textContent = 'Please fill in all fields.';
         return;
     }
-    const endpoint = isLogin ? 'https://89a5-103-163-182-184.ngrok-free.app/api/auth/login' : 'https://89a5-103-163-182-184.ngrok-free.app/api/auth/signup';
+    const endpoint = isLogin ? '/api/auth/login' : '/api/auth/signup';
     try {
         const res = await fetch('https://89a5-103-163-182-184.ngrok-free.app' + endpoint, {
             method: 'POST',
