@@ -206,14 +206,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function openProfileModal() {
-        profileMsg.textContent = '';
-        profilePassword.value = '';
-        fetch(`https://89a5-103-163-182-184.ngrok-free.app/api/auth/profile?email=${encodeURIComponent(getCurrentEmail())}`)
-            .then(res => res.json())
-            .then(user => {
-                profileEmail.value = user.email;
-                profileModal.style.display = 'flex';
-            });
+        const profileMsg = document.getElementById('profile-msg');
+const profileEmail = document.getElementById('profile-email');
+const profileModal = document.getElementById('profile-modal');
+
+fetch(`https://89a5-103-163-182-184.ngrok-free.app/api/auth/profile?email=${getCurrentEmail()}`)
+  .then(res => {
+    if (!res.ok) throw new Error('Network response was not ok');
+    return res.json();
+  })
+  .then(user => {
+    profileEmail.value = user.email;
+    profileModal.style.display = 'flex';
+  })
+  .catch(err => {
+    profileMsg.textContent = 'Failed to load profile: ' + err.message;
+  });
     }
     if (profileBtn && profileModal) {
         profileBtn.onclick = openProfileModal;
